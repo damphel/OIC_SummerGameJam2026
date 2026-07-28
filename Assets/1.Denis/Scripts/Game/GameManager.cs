@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     //Å@ïœêî
     [SerializeField] List<SceneController> availableScenes;
 
+    public ActionButton actionButton;
+
+
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
 
@@ -42,12 +45,16 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         onChangeState += DoOnStateChange;
+        actionButton.onHoldButton += DoOnActionButtonPressed;
+        actionButton.onReleaseButton += DoOnActionButtonReleased;
     }
 
 
     private void OnDisable()
     {
         onChangeState -= DoOnStateChange;
+        actionButton.onHoldButton -= DoOnActionButtonPressed;
+        actionButton.onReleaseButton -= DoOnActionButtonReleased;
     }
 
     private void Awake()
@@ -79,24 +86,38 @@ public class GameManager : MonoBehaviour
 
     public void InitializeScenes()
     {
-        SceneController selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
+        if (availableScenes == null || availableScenes.Count == 0) return;
 
-        CurrentScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity); ;
-        CurrentScene.onProgressChange += DoOnCurrentSceneProgressChange;
+        SceneController selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
+        CurrentScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity);
+
+        CurrentScene.onCompleteScene -= CreateNextScene;
+        CurrentScene.onCompleteScene += CreateNextScene;
     }
 
-    public void ChangeScene()
+    public void CreateNextScene()
     {
+        if (availableScenes == null || availableScenes.Count == 0) return;
+
+        if (availableScenes.Count == 1)
+        {
+            NextScene = Instantiate(availableScenes[0], Vector3.right * availableScenes[0].SceneSize.x, Quaternion.identity);
+            NextScene.DoOnSceneInstantiate();
+            return;
+        }
+
         SceneController selectedScene;
 
         do
         {
             selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
-        } while (selectedScene.ID == CurrentScene.ID);
+        } while (CurrentScene != null && selectedScene.ID == CurrentScene.ID);
 
-        NextScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity); ;
-        NextScene.onProgressChange += DoOnCurrentSceneProgressChange;
+        Vector3 nextSceneInitPosition = Vector3.right * selectedScene.SceneSize.x;
+        NextScene = Instantiate(selectedScene, nextSceneInitPosition, Quaternion.identity);
+        NextScene.DoOnSceneInstantiate();
     }
+
 
     private void DoOnStateChange(GameState state)
     {
@@ -113,10 +134,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void DoOnActionButtonPressed(float time)
+    {
+        CurrentScene.DoOnActionButtonPressed(time);
+    }
+
     private void DoOnCurrentSceneProgressChange(float progress)
     {
         // update the bar visuals
         // do the player movement to Taget
+    }
+
+    private void DoOnActionButtonReleased()
+    {
+        CurrentScene.DoOnActionButtonReleased();
     }
 
 

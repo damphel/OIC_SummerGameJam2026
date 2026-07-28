@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,9 +7,12 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private float pointerDownTime;
     private bool isPressed = false;
 
+    public Action<float> onHoldButton;
+    public Action onReleaseButton;
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        pointerDownTime = Time.time;
+        pointerDownTime = 0f;
         isPressed = true;
     }
 
@@ -16,10 +20,9 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!isPressed) return;
-        
-        float pressDuration = Time.time - pointerDownTime;
-        //Debug.Log($"Button pressed for: {pressDuration} seconds");
 
+        pointerDownTime = Time.deltaTime - pointerDownTime;
+        onReleaseButton?.Invoke();
         isPressed = false;
     }
 
@@ -27,8 +30,11 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (isPressed)
         {
-            float currentHoldTime = Time.time - pointerDownTime;
-            Debug.Log($"Button is being held for: {currentHoldTime} seconds");
+            pointerDownTime += Time.deltaTime;
+
+            onHoldButton?.Invoke(pointerDownTime);
+
+            Debug.Log($"Button is being held for: {pointerDownTime} seconds");
         }
     }
 }
