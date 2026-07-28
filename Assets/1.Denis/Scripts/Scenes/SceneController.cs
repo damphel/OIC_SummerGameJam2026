@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] float timeRequieredToComplete = 10f;
     [SerializeField] BoxCollider2D sizeBox;
 
-    public int ID { get; private set; }
+    public int ID => _id;
 
     float sceneProgress = 0f;
     bool isComplete = false;
@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour
     public Action onCompleteScene;
 
     public float SceneProgress { get; set; }
+    public float TimeRequieredToComplete => TimeRequieredToComplete;
     public Vector2 SceneSize => sizeBox.size;
 
     private void Awake()
