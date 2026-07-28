@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     //@•Ï”
     [SerializeField] List<SceneController> availableScenes;
+    [SerializeField] PlayerController playerController;
+    [SerializeField] TargetController targetController;
 
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
@@ -125,6 +127,7 @@ public class GameManager : MonoBehaviour
         NextScene.onCompleteScene -= CreateNextScene;
         NextScene.onCompleteScene += CreateNextScene;
 
+        // Move the scene
         NextScene.DoOnSceneInstantiate(
             () => {
                 ChangeState(GameManager.GameState.Playing);

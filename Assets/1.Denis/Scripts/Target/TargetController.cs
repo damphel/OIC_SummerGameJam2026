@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class TargetController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform targetPivot;
 
-    // Update is called once per frame
-    void Update()
+    public Transform TargetPivot => targetPivot;
+
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.color = Color.orange;
+        Gizmos.DrawWireSphere(targetPivot.position, 0.5f);
     }
 }
