@@ -34,10 +34,21 @@ public class GameManager : MonoBehaviour
     public SceneController NextScene { get; private set; }
 
     // Actions
-    public Action<GameState> OnChangeState;
+    public Action<GameState> onChangeState;
 
     // Getters and Setters  
     public GameState CurrentState { get; set; }
+
+    private void OnEnable()
+    {
+        onChangeState += DoOnStateChange;
+    }
+
+
+    private void OnDisable()
+    {
+        onChangeState -= DoOnStateChange;
+    }
 
     private void Awake()
     {
@@ -63,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState gameState)
     {
         CurrentState = gameState;
-        OnChangeState?.Invoke(gameState);
+        onChangeState?.Invoke(gameState);
     }
 
     public void InitializeScenes()
@@ -71,7 +82,7 @@ public class GameManager : MonoBehaviour
         SceneController selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
 
         CurrentScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity); ;
-
+        CurrentScene.onProgressChange += DoOnCurrentSceneProgressChange;
     }
 
     public void ChangeScene()
@@ -83,8 +94,31 @@ public class GameManager : MonoBehaviour
             selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
         } while (selectedScene.ID == CurrentScene.ID);
 
-        NextScene = selectedScene;
+        NextScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity); ;
+        NextScene.onProgressChange += DoOnCurrentSceneProgressChange;
     }
+
+    private void DoOnStateChange(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Paused:
+                break;
+            case GameState.Waiting:
+                break;
+            case GameState.Playing:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void DoOnCurrentSceneProgressChange(float progress)
+    {
+        // update the bar visuals
+        // do the player movement to Taget
+    }
+
 
     [ContextMenu("TEST CHANGE TO PLAY")]
     public void TESTFORCEPLAY()
