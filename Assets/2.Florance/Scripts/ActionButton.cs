@@ -1,23 +1,34 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    private float pointerDownTime;
+    private bool isPressed = false;
 
-    public void OnPointerDown(PointerEventData pointerEventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //Output the name of the GameObject that is being clicked
-        Debug.Log(name + "Game Object Click in Progress");
-    }
-    public void OnPointerUp(PointerEventData pointerEventData)
-    {
-        Debug.Log(name + "No longer being clicked");
+        pointerDownTime = Time.time;
+        isPressed = true;
     }
 
-    //Increse the Progress Bar Value
+  
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (!isPressed) return;
+        
+        float pressDuration = Time.time - pointerDownTime;
+        //Debug.Log($"Button pressed for: {pressDuration} seconds");
 
+        isPressed = false;
+    }
 
-
-    
+    private void Update()
+    {
+        if (isPressed)
+        {
+            float currentHoldTime = Time.time - pointerDownTime;
+            Debug.Log($"Button is being held for: {currentHoldTime} seconds");
+        }
+    }
 }
