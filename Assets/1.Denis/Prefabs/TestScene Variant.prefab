@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: _id
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
+      propertyPath: timeRequieredToComplete
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7619108436295728881, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

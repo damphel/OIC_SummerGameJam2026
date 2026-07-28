@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   _id: 0
   moveTime: 2.5
-  timeRequieredToComplete: 10
+  timeRequieredToComplete: 6
   sizeBox: {fileID: 3678507227754710162}
 --- !u!61 &3678507227754710162
 BoxCollider2D:

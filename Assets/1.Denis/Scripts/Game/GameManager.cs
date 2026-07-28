@@ -30,9 +30,6 @@ public class GameManager : MonoBehaviour
     //Å@ïœêî
     [SerializeField] List<SceneController> availableScenes;
 
-    public ActionButton actionButton;
-
-
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
 
@@ -45,16 +42,18 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         onChangeState += DoOnStateChange;
-        actionButton.onHoldButton += DoOnActionButtonPressed;
-        actionButton.onReleaseButton += DoOnActionButtonReleased;
+        onChangeState += UIManager.Instance.DoOnStateChange;
+        UIManager.Instance.ActionButton.onHoldButton += DoOnActionButtonPressed;
+        UIManager.Instance.ActionButton.onReleaseButton += DoOnActionButtonReleased;
     }
 
 
     private void OnDisable()
     {
         onChangeState -= DoOnStateChange;
-        actionButton.onHoldButton -= DoOnActionButtonPressed;
-        actionButton.onReleaseButton -= DoOnActionButtonReleased;
+        onChangeState -= UIManager.Instance.DoOnStateChange;
+        UIManager.Instance.ActionButton.onHoldButton -= DoOnActionButtonPressed;
+        UIManager.Instance.ActionButton.onReleaseButton -= DoOnActionButtonReleased;
     }
 
     private void Awake()
@@ -102,9 +101,16 @@ public class GameManager : MonoBehaviour
         if (availableScenes.Count == 1)
         {
             NextScene = Instantiate(availableScenes[0], Vector3.right * availableScenes[0].SceneSize.x, Quaternion.identity);
-            NextScene.DoOnSceneInstantiate();
-            return;
+            NextScene.DoOnSceneInstantiate(
+                () => {
+                    ChangeState(GameManager.GameState.Playing);
+                    CurrentScene = NextScene;
+                }); return;
         }
+
+        ChangeState(GameManager.GameState.Waiting);
+
+        UIManager.Instance.UpdateProgressFillAmmmount(0f);
 
         SceneController selectedScene;
 
@@ -115,7 +121,15 @@ public class GameManager : MonoBehaviour
 
         Vector3 nextSceneInitPosition = Vector3.right * selectedScene.SceneSize.x;
         NextScene = Instantiate(selectedScene, nextSceneInitPosition, Quaternion.identity);
-        NextScene.DoOnSceneInstantiate();
+
+        NextScene.onCompleteScene -= CreateNextScene;
+        NextScene.onCompleteScene += CreateNextScene;
+
+        NextScene.DoOnSceneInstantiate(
+            () => {
+                ChangeState(GameManager.GameState.Playing);
+                CurrentScene = NextScene;
+            });
     }
 
 
@@ -137,23 +151,14 @@ public class GameManager : MonoBehaviour
     private void DoOnActionButtonPressed(float time)
     {
         CurrentScene.DoOnActionButtonPressed(time);
-    }
-
-    private void DoOnCurrentSceneProgressChange(float progress)
-    {
         // update the bar visuals
+        UIManager.Instance.UpdateProgressFillAmmmount(time / CurrentScene.TimeRequieredToComplete);
         // do the player movement to Taget
     }
 
     private void DoOnActionButtonReleased()
     {
+        UIManager.Instance.UpdateProgressFillAmmmount(0f);
         CurrentScene.DoOnActionButtonReleased();
-    }
-
-
-    [ContextMenu("TEST CHANGE TO PLAY")]
-    public void TESTFORCEPLAY()
-    {
-        ChangeState(GameState.Playing);
     }
 }

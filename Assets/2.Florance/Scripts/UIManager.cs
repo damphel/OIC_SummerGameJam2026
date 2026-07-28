@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class UIManager: MonoBehaviour
 {
@@ -23,8 +24,9 @@ public class UIManager: MonoBehaviour
     [SerializeField] Button playButton, endButton, restartButton;
     [SerializeField] ActionButton actionButton;
 
-    public ActionButton ActionButton { get => actionButton;}
+    [SerializeField] Image progressFillBar;
 
+    public ActionButton ActionButton { get => actionButton;}
 
     private void Awake()
     {
@@ -43,7 +45,6 @@ public class UIManager: MonoBehaviour
     void Start()
     {
        ChangeToMainmenu();
-
     }
 
     private void OnEnable()
@@ -53,32 +54,65 @@ public class UIManager: MonoBehaviour
         if (restartButton) restartButton.onClick.AddListener(ChangeToMainmenu);
     }
 
+
     private void OnDisable()
     {
         if (playButton) playButton.onClick.RemoveListener(ChangeToGame);
         if (endButton) endButton.onClick.RemoveListener(ChangeToEnding);
         if (restartButton) restartButton.onClick.RemoveListener(ChangeToMainmenu);
     }
+
+    public void DoOnStateChange(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.Paused:
+                ActionButton.ThisButton.interactable = false;
+                break;
+            case GameState.Waiting:
+                ActionButton.ThisButton.interactable = false;
+                ActionButton.ResetPointerDownTimer();
+                break;
+            case GameState.Playing:
+                ActionButton.ThisButton.interactable = true;
+                break;
+            default:
+                break;
+        }
+    }
+
     public void ChangeToMainmenu()
     {
         Debug.Log("ChangeToMainmenu");
+        GameManager.Instance.ChangeState(GameManager.GameState.Paused);
+
         MainMenuPanel.SetActive(true);
         GamePanel.SetActive(false);
         EndingPanel.SetActive(false);
     }
+
     public void ChangeToGame()
     {
         Debug.Log("ChangeToGame");
+        GameManager.Instance.ChangeState(GameManager.GameState.Playing);
+
         MainMenuPanel.SetActive(false);
         GamePanel.SetActive(true);
         EndingPanel.SetActive(false);
     }
+
     public void ChangeToEnding()
     {
         Debug.Log("ChangeToEnding");
+        GameManager.Instance.ChangeState(GameManager.GameState.Paused);
+
         MainMenuPanel.SetActive(false);
         GamePanel.SetActive(false);
         EndingPanel.SetActive(true);
     }
    
+    public void UpdateProgressFillAmmmount(float value)
+    {
+        progressFillBar.fillAmount = value;
+    }
 }

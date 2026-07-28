@@ -15,8 +15,10 @@ public class SceneController : MonoBehaviour
 
     public Action onCompleteScene;
 
+    public bool IsComplete => isComplete;
     public float SceneProgress { get; set; }
-    public float TimeRequieredToComplete => TimeRequieredToComplete;
+    public float TimeRequieredToComplete => timeRequieredToComplete;
+
     public Vector2 SceneSize => sizeBox.size;
 
     private void Awake()
@@ -24,10 +26,10 @@ public class SceneController : MonoBehaviour
         if(sizeBox==null) sizeBox = GetComponent<BoxCollider2D>();
     }
 
-    public void DoOnSceneInstantiate()
+    public void DoOnSceneInstantiate(Action OnCompleteInstance = null)
     {
         Debug.Log("デニズ：Do On Scene UInstantiate", this);
-        DoMoveSceneToTargetPos(0f);
+        DoMoveSceneToTargetPos(0f, OnCompleteInstance);
     }
 
     public void DoOnActionButtonPressed(float time)
@@ -63,7 +65,11 @@ public class SceneController : MonoBehaviour
 
     public void DoMoveSceneToTargetPos(float targetXPos, Action OnComplete = null)
     {
-        this.transform.DOMoveX(targetXPos, moveTime).OnComplete(() => OnComplete?.Invoke());
+        this.transform.DOMoveX(targetXPos, moveTime).OnComplete(
+            () =>
+            {
+                OnComplete?.Invoke();
+            });
             
     }
 }
