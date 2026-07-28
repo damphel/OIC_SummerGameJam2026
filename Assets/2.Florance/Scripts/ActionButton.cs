@@ -7,7 +7,7 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     [SerializeField] private Button thisButton;
     private float pointerDownTime;
-    private bool isPressed = false;
+    public bool isPressed = false;
 
     public Button ThisButton => thisButton;
 
