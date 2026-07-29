@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     //�@�ϐ�
     [SerializeField] List<SceneController> availableScenes;
     [SerializeField] PlayerController playerController;
+    [SerializeField] PlayableDirector director;
 
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
@@ -47,7 +49,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ActionButton.onHoldButton += DoOnActionButtonPressed;
         UIManager.Instance.ActionButton.onReleaseButton += DoOnActionButtonReleased;
     }
-
 
     private void OnDisable()
     {
@@ -91,14 +92,24 @@ public class GameManager : MonoBehaviour
         SceneController selectedScene = availableScenes[UnityEngine.Random.Range(0, availableScenes.Count)];
         CurrentScene = Instantiate(selectedScene, Vector3.zero, Quaternion.identity);
 
-        CurrentScene.onCompleteScene -= CreateNextScene;
-        CurrentScene.onCompleteScene += CreateNextScene;
+        CurrentScene.onCompleteScene -= DoOnCompleteSceneHandler;
+        CurrentScene.onCompleteScene += DoOnCompleteSceneHandler;
     }
 
+    public void DoOnCompleteSceneHandler()
+    {
+        director.time = 0; 
+        
+        director.Evaluate();
+        director.Play();
+    }
+    
     public void CreateNextScene()
     {
         if (availableScenes == null || availableScenes.Count == 0) return;
-
+        
+        CurrentScene.DoExternalMoveSceneToOutside();
+        
         if (availableScenes.Count == 1)
         {
             NextScene = Instantiate(availableScenes[0], Vector3.right * availableScenes[0].SceneSize.x, Quaternion.identity);
@@ -109,7 +120,7 @@ public class GameManager : MonoBehaviour
                 }); return;
         }
 
-        ChangeState(GameManager.GameState.Waiting);
+        //ChangeState(GameManager.GameState.Waiting);
 
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
 
@@ -123,13 +134,13 @@ public class GameManager : MonoBehaviour
         Vector3 nextSceneInitPosition = Vector3.right * selectedScene.SceneSize.x;
         NextScene = Instantiate(selectedScene, nextSceneInitPosition, Quaternion.identity);
 
-        NextScene.onCompleteScene -= CreateNextScene;
-        NextScene.onCompleteScene += CreateNextScene;
+        NextScene.onCompleteScene -= DoOnCompleteSceneHandler;
+        NextScene.onCompleteScene += DoOnCompleteSceneHandler;
 
         // Move the scene
         NextScene.DoOnSceneInstantiate(
             () => {
-                ChangeState(GameManager.GameState.Playing);
+                //ChangeState(GameManager.GameState.Playing);
                 CurrentScene = NextScene;
             });
     }
@@ -150,8 +161,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DoOnDoorCinematicIsReceived()
+    {
+        ChangeState(GameState.Waiting);
+    }
+    
+    public void DoOnFleeSignalIsReceived()
+    {
+        playerController.MovePlayerToFinalPosition();
+    }
+
+    public void DoOnBackToPositionSignalIsReceived()
+    {
+        CreateNextScene();
+        playerController.MovePlayerToInitialPosition();
+    }
+    
+    public void DoOnReturnToPlay()
+    {
+        ChangeState(GameState.Playing);
+    }
+
     private void DoOnActionButtonPressed(float time)
     {
+        if (CurrentState != GameState.Playing)
+            return;
+        
         CurrentScene.DoOnActionButtonPressed(time);
         // update the bar visuals
         UIManager.Instance.UpdateProgressFillAmmmount(time / CurrentScene.TimeRequieredToComplete);
@@ -161,6 +196,9 @@ public class GameManager : MonoBehaviour
 
     private void DoOnActionButtonReleased()
     {
+        if (CurrentState != GameState.Playing)
+            return;
+        
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
         playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,0f);   
         CurrentScene.DoOnActionButtonReleased();

@@ -20,6 +20,16 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = initialPosition.position;
     }
+
+    public void MovePlayerToInitialPosition()
+    {
+        MovePlayerToTargetDOTween(initialPosition.position, false);
+    }
+    
+    public void MovePlayerToFinalPosition()
+    {
+        MovePlayerToTargetDOTween(finalPosition.position);
+    }
     
     public void MovePlayerToTargetDOTween(Vector3 targetPosition, bool useCurve = true)
     {
@@ -39,6 +49,9 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayerToTarget(Vector3 targetPosition, float progress)
     {
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+        
         if (!isSetup || cachedTargetPos != targetPosition || progress <= 0.001f)
         {
             startPos = initialPosition.position;

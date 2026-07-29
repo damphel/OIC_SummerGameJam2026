@@ -58,13 +58,16 @@ public class SceneController : MonoBehaviour
         isComplete = true;
 
         onCompleteScene?.Invoke();
-
-        DoMoveSceneToTargetPos(this.transform.position.x - sizeBox.size.x, 
-        () => {
-            Destroy(this.gameObject);
-        });
     }
 
+    public void DoExternalMoveSceneToOutside()
+    {
+        DoMoveSceneToTargetPos(this.transform.position.x - sizeBox.size.x, 
+            () => {
+                Destroy(this.gameObject);
+            });
+    }
+    
     public void DoMoveSceneToTargetPos(float targetXPos, Action OnComplete = null)
     {
         this.transform.DOMoveX(targetXPos, moveTime).OnComplete(
