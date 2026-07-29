@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    
-    [SerializeField] private ActionButton actionButton;
     [SerializeField] private float minIdleTime = 3f;
     [SerializeField] private float maxIdleTime = 7f;
     [SerializeField] private float alertDuration = 2f;
@@ -88,9 +86,8 @@ public class ObstacleController : MonoBehaviour
     private void UpdateAlertState()
     {
         timer -= Time.deltaTime;
-
         
-        if (actionButton.isPressed)
+        if (UIManager.Instance.ActionButton.isPressed)
         {
             SetState(ObstacleState.Catch);
             return;
