@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static GameManager;
 
-public class UIManager: MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     #region Singleton
     private static UIManager _instance;
@@ -20,13 +20,14 @@ public class UIManager: MonoBehaviour
     }
     #endregion
 
-    [SerializeField] GameObject MainMenuPanel,GamePanel,EndingPanel;
+    [SerializeField] GameObject MainMenuPanel, GamePanel, EndingPanel;
+    [SerializeField] FadeAnimation MainMenuFader;
     [SerializeField] Button playButton, endButton, restartButton;
     [SerializeField] ActionButton actionButton;
 
     [SerializeField] Image progressFillBar;
 
-    public ActionButton ActionButton { get => actionButton;}
+    public ActionButton ActionButton { get => actionButton; }
 
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class UIManager: MonoBehaviour
 
     void Start()
     {
-       ChangeToMainmenu();
+        ChangeToMainmenu();
     }
 
     private void OnEnable()
@@ -96,8 +97,8 @@ public class UIManager: MonoBehaviour
         Debug.Log("ChangeToGame");
         GameManager.Instance.ChangeState(GameManager.GameState.Playing);
 
-        MainMenuPanel.SetActive(false);
-        GamePanel.SetActive(true);
+     
+        MainMenuFader.FadeOut(() => GamePanel.SetActive(true));
         EndingPanel.SetActive(false);
     }
 
@@ -106,11 +107,11 @@ public class UIManager: MonoBehaviour
         Debug.Log("ChangeToEnding");
         GameManager.Instance.ChangeState(GameManager.GameState.Paused);
 
-        MainMenuPanel.SetActive(false);
+       
+        MainMenuFader.FadeOut(() => EndingPanel.SetActive(true));
         GamePanel.SetActive(false);
-        EndingPanel.SetActive(true);
     }
-   
+
     public void UpdateProgressFillAmmmount(float value)
     {
         progressFillBar.fillAmount = value;

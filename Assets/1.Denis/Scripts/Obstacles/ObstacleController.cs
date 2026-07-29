@@ -1,11 +1,15 @@
 
+
+
 using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    [SerializeField] private float minIdleTime = 3f;
-    [SerializeField] private float maxIdleTime = 7f;
-    [SerializeField] private float alertDuration = 2f;
+    [SerializeField] private int minIdle = 10;   
+    [SerializeField] private int maxIdle = 50;   
+    [SerializeField] private int MaxChance = 100; 
+    [SerializeField] private float alertTime = 2f;
+    [SerializeField] private float checkInterval = 1f;
 
     public enum ObstacleState
     {
@@ -17,9 +21,11 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private ObstacleState currentState = ObstacleState.Idle;
     private float timer;
 
+    private int timesChecked;
+
     private void Start()
     {
-        
+
         SetState(ObstacleState.Idle);
     }
 
@@ -28,8 +34,6 @@ public class ObstacleController : MonoBehaviour
         switch (currentState)
         {
             case ObstacleState.Idle:
-                // To change to alert, it has to have like a random stuff, 
-                //I dont have the access to the sceneController, so I will use the GameManager.Instance.CurrentScene.TimeRequieredToComplete as a reference for the random value.
                 UpdateIdleState();
                 break;
 
@@ -54,14 +58,15 @@ public class ObstacleController : MonoBehaviour
         switch (currentState)
         {
             case ObstacleState.Idle:
-            
-                timer = Random.Range(minIdleTime, maxIdleTime);
-                Debug.Log($"In Idle State {timer:F1} seconds.");
+
+                timesChecked = 0;
+                timer= checkInterval;
+                Debug.Log($"Idle Prob{minIdle}to{maxIdle}");
                 //animation change
                 break;
 
             case ObstacleState.Alert:
-                timer = alertDuration;
+                timer = alertTime;
                 Debug.Log("Checking for button");
                 //animation change
                 break;
@@ -76,9 +81,20 @@ public class ObstacleController : MonoBehaviour
 
     private void UpdateIdleState()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
+
+        timer = timer - Time.deltaTime;
+        if (timer > 0) return;
+        timer = checkInterval;
+        float increasingProb = Mathf.Clamp01((float)timesChecked / MaxChance);
+        float currentAlertChance = Mathf.Lerp(minIdle, maxIdle, increasingProb);
+
+        int randomnum = Random.Range(1, 101);
+        timesChecked++;
+
+        Debug.Log($"number we have to ìñÇΩÇÈ {randomnum} / prob of the theÅ@Ç†ÇΩÇÈî‘çÜ {currentAlertChance:F1}% / {timesChecked}");
+        if (randomnum <= currentAlertChance)
         {
+            Debug.Log("ìñÇΩÇËÅIAlertÇ…êÿÇËë÷Ç¶ÇÈ");
             SetState(ObstacleState.Alert);
         }
     }
@@ -86,7 +102,7 @@ public class ObstacleController : MonoBehaviour
     private void UpdateAlertState()
     {
         timer -= Time.deltaTime;
-        
+
         if (UIManager.Instance.ActionButton.isPressed)
         {
             SetState(ObstacleState.Catch);
