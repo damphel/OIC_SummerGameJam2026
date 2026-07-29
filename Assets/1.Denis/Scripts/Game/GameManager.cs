@@ -27,19 +27,21 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    
+    // Actions
+    public Action<GameState> onChangeState;
 
     //�@�ϐ�
+    [SerializeField] private int roundsToFinish = 6;
     [SerializeField] List<SceneController> availableScenes;
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayableDirector director;
 
+    private int currentRound = 0;
+    
+    // Getters and Setters  
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
-
-    // Actions
-    public Action<GameState> onChangeState;
-
-    // Getters and Setters  
     public GameState CurrentState { get; set; }
 
     private void OnEnable()
@@ -98,8 +100,9 @@ public class GameManager : MonoBehaviour
 
     public void DoOnCompleteSceneHandler()
     {
-        director.time = 0; 
+        currentRound++;
         
+        director.time = 0; 
         director.Evaluate();
         director.Play();
     }
@@ -173,8 +176,15 @@ public class GameManager : MonoBehaviour
 
     public void DoOnBackToPositionSignalIsReceived()
     {
-        CreateNextScene();
-        playerController.MovePlayerToInitialPosition();
+        if (currentRound >= roundsToFinish)
+        {
+            Debug.Log("デニス：Requiered rounds to finish reached.");
+        }
+        else
+        {
+            CreateNextScene();
+            playerController.MovePlayerToInitialPosition();
+        }
     }
     
     public void DoOnReturnToPlay()
