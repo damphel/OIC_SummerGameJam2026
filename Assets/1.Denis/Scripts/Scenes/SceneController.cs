@@ -7,6 +7,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] float moveTime = 2.5f;
     [SerializeField] float timeRequieredToComplete = 10f;
     [SerializeField] BoxCollider2D sizeBox;
+    [SerializeField] TargetController targetController;
 
     public int ID => _id;
 
@@ -20,6 +21,7 @@ public class SceneController : MonoBehaviour
     public float TimeRequieredToComplete => timeRequieredToComplete;
 
     public Vector2 SceneSize => sizeBox.size;
+    public TargetController ThisTargetController => targetController;
 
     private void Awake()
     {
@@ -28,7 +30,7 @@ public class SceneController : MonoBehaviour
 
     public void DoOnSceneInstantiate(Action OnCompleteInstance = null)
     {
-        Debug.Log("ƒfƒjƒYFDo On Scene UInstantiate", this);
+        Debug.Log("ï¿½fï¿½jï¿½Yï¿½FDo On Scene UInstantiate", this);
         DoMoveSceneToTargetPos(0f, OnCompleteInstance);
     }
 

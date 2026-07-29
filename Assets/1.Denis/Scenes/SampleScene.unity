@@ -551,6 +551,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1104725160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7869296895834030072, guid: 65027129a7e007d4b9132d3162c57ed6, type: 3}
+  m_PrefabInstance: {fileID: 1114259758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8061d83d970304a8814c199ec34ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &1114259758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,11 +572,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3316485335771746642, guid: 65027129a7e007d4b9132d3162c57ed6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.52
+      value: -13.57
       objectReference: {fileID: 0}
     - target: {fileID: 3316485335771746642, guid: 65027129a7e007d4b9132d3162c57ed6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 3316485335771746642, guid: 65027129a7e007d4b9132d3162c57ed6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -626,6 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1527108873}
   - component: {fileID: 1527108874}
+  - component: {fileID: 1527108875}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -663,8 +675,80 @@ MonoBehaviour:
   availableScenes:
   - {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
   - {fileID: 315330803726955708, guid: 89dec243daf2a284c817faa5796aa09f, type: 3}
-  playerController: {fileID: 0}
-  targetController: {fileID: 0}
+  playerController: {fileID: 1104725160}
+--- !u!114 &1527108875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527108872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 7403441c503086847910e2d93b3b62a4, type: 2}
+    - {fileID: 11400000, guid: 671c7a932c90588489f788204136499a, type: 2}
+    - {fileID: 11400000, guid: 3d681501f06b4d2469cba520292accd1, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls: []
+--- !u!1 &1998344991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998344993}
+  - component: {fileID: 1998344992}
+  m_Layer: 0
+  m_Name: SceneOrchestor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &1998344992
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998344991}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: f4e8e0ac99f4b264dae912b454ea4227, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1998344993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998344991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.06985, y: 2.89223, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026956987
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +787,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1527108873}
+  - {fileID: 1998344993}
   - {fileID: 81749400}
   - {fileID: 1114259758}
   - {fileID: 2026956988}

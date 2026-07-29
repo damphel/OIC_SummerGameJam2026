@@ -325,6 +325,7 @@ MonoBehaviour:
   moveTime: 2.5
   timeRequieredToComplete: 6
   sizeBox: {fileID: 3678507227754710162}
+  targetController: {fileID: 686601926546524067}
 --- !u!61 &3678507227754710162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -462,6 +463,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e902d74f7ffe3f842bf02459cc186244, type: 3}
+--- !u!114 &686601926546524067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5323545009070650068, guid: e902d74f7ffe3f842bf02459cc186244, type: 3}
+  m_PrefabInstance: {fileID: 4640479112070313335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff6f5558a1e35b4ba9865bb496a9294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetController
 --- !u!4 &1288039333613903549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5874457365895162826, guid: e902d74f7ffe3f842bf02459cc186244, type: 3}

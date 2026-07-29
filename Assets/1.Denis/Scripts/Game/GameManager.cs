@@ -27,10 +27,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    //Å@ïœêî
+    //ÔøΩ@ÔøΩœêÔøΩ
     [SerializeField] List<SceneController> availableScenes;
     [SerializeField] PlayerController playerController;
-    [SerializeField] TargetController targetController;
 
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
@@ -156,12 +155,14 @@ public class GameManager : MonoBehaviour
         CurrentScene.DoOnActionButtonPressed(time);
         // update the bar visuals
         UIManager.Instance.UpdateProgressFillAmmmount(time / CurrentScene.TimeRequieredToComplete);
-        // do the player movement to Taget
+        // do the player movement to Target
+        playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,time / CurrentScene.TimeRequieredToComplete);   
     }
 
     private void DoOnActionButtonReleased()
     {
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
+        playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,0f);   
         CurrentScene.DoOnActionButtonReleased();
     }
 }
