@@ -1,8 +1,4 @@
-
-
-
 using UnityEngine;
-
 public class ObstacleController : MonoBehaviour
 {
     [SerializeField] private int minIdle = 10;   
@@ -20,7 +16,6 @@ public class ObstacleController : MonoBehaviour
 
     [SerializeField] private ObstacleState currentState = ObstacleState.Idle;
     private float timer;
-
     private int timesChecked;
 
     private void Start()
