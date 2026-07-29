@@ -1,12 +1,13 @@
+
 using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    [SerializeField] SceneController sceneController;
-    [SerializeField] ActionButton actionButton;
-    [SerializeField] float Max, Min;
-
-    float randomValue,prob;
+    
+    [SerializeField] private ActionButton actionButton;
+    [SerializeField] private float minIdleTime = 3f;
+    [SerializeField] private float maxIdleTime = 7f;
+    [SerializeField] private float alertDuration = 2f;
 
     public enum ObstacleState
     {
@@ -15,11 +16,13 @@ public class ObstacleController : MonoBehaviour
         Catch
     }
 
-    protected ObstacleState currentState=ObstacleState.Idle;
+    [SerializeField] private ObstacleState currentState = ObstacleState.Idle;
+    private float timer;
+
     private void Start()
     {
-        randomValue = GenerateRandomValue();
-        prob=Random.Range(Min, Max);
+        
+        SetState(ObstacleState.Idle);
     }
 
     private void Update()
@@ -29,53 +32,79 @@ public class ObstacleController : MonoBehaviour
             case ObstacleState.Idle:
                 // To change to alert, it has to have like a random stuff, 
                 //I dont have the access to the sceneController, so I will use the GameManager.Instance.CurrentScene.TimeRequieredToComplete as a reference for the random value.
-                if (randomValue == prob) 
-                {
-                    Debug.Log("Changing to Alert state.");
-                    currentState = ObstacleState.Alert;
-                }
-                 
+                UpdateIdleState();
                 break;
+
             case ObstacleState.Alert:
                 // To change to Idle again, you need to finish the animation
                 // To change to Catch, after the animaion time finish, then
                 // if the player is pressing the button, then... it catch him. (DoCatchStuffs)
                 // but if not, just return to Idle
-                ChangeStateConditions();
+                UpdateAlertState();
                 break;
 
             case ObstacleState.Catch:
                 // No Sensors, just a safer or a flag.
                 break;
-            default:
+        }
+    }
+
+    private void SetState(ObstacleState newState)
+    {
+        currentState = newState;
+
+        switch (currentState)
+        {
+            case ObstacleState.Idle:
+            
+                timer = Random.Range(minIdleTime, maxIdleTime);
+                Debug.Log($"In Idle State {timer:F1} seconds.");
+                //animation change
+                break;
+
+            case ObstacleState.Alert:
+                timer = alertDuration;
+                Debug.Log("Checking for button");
+                //animation change
+                break;
+
+            case ObstacleState.Catch:
+                Debug.Log("Button Pressed");
+                OnPlayerCaught();
+                //animation change
                 break;
         }
     }
 
-    public float GenerateRandomValue()
+    private void UpdateIdleState()
     {
-        float a= Random.Range(0f, 100f) % 10; ;
-        Debug.Log($"Random value: {a}");
-        return a;
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            SetState(ObstacleState.Alert);
+        }
     }
 
-    public void ChangeStateConditions()
+    private void UpdateAlertState()
     {
+        timer -= Time.deltaTime;
+
+        
         if (actionButton.isPressed)
         {
-            Debug.Log("Player pressed the button, changing to Catch state.");
-            currentState = ObstacleState.Catch;
+            SetState(ObstacleState.Catch);
+            return;
         }
-        else
+        if (timer <= 0f)
         {
-            Debug.Log("Player did not press the button, returning to Idle state.");
-            currentState = ObstacleState.Idle;
-            GenerateRandomValue();
+            Debug.Log(" Didn't see anything. Returning to sleep.");
+            SetState(ObstacleState.Idle);
         }
-
     }
-    protected void DoOnIdle()
-    {
 
+    private void OnPlayerCaught()
+    {
+        //animation change 
+        //restart game
     }
 }
