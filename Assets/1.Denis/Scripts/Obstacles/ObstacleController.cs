@@ -13,7 +13,6 @@ public class ObstacleController : MonoBehaviour
     [Header("----- SFX/Music -----")]
     [SerializeField] AudioSource obstacleSource;
     [SerializeField] AudioSource obstacleIdleSource;
-    [SerializeField] AudioClip obstacleIdleSFX;
     [SerializeField] AudioClip obstacleAlertSFX;
     [SerializeField] AudioClip obstacleCatchSFX;
 
@@ -66,7 +65,7 @@ public class ObstacleController : MonoBehaviour
 
                 timesChecked = 0;
                 timer= checkInterval;
-                if(obstacleIdleSFX != null) obstacleIdleSource.PlayOneShot(obstacleIdleSFX);
+                if(obstacleIdleSource != null) obstacleIdleSource.Play();
 
                 Debug.Log($"Idle Prob{minIdle}to{maxIdle}");
 
@@ -82,6 +81,7 @@ public class ObstacleController : MonoBehaviour
 
             case ObstacleState.Alert:
                 timer = alertTime;
+                if(obstacleIdleSource != null) obstacleIdleSource.Stop();
                 if(obstacleAlertSFX != null) obstacleSource.PlayOneShot(obstacleAlertSFX);
                 Debug.Log("Checking for button");
                 //animation change
@@ -95,6 +95,7 @@ public class ObstacleController : MonoBehaviour
 
             case ObstacleState.Catch:
                 Debug.Log("Button Pressed");
+                if(obstacleIdleSource != null) obstacleIdleSource.Stop();
                 if(obstacleCatchSFX != null) obstacleSource.PlayOneShot(obstacleCatchSFX);
                 OnPlayerCaught();
 
@@ -127,10 +128,10 @@ public class ObstacleController : MonoBehaviour
         int randomnum = Random.Range(1, 101);
         timesChecked++;
 
-        Debug.Log($"number we have to ìñÇΩÇÈ {randomnum} / prob of the theÅ@Ç†ÇΩÇÈî‘çÜ {currentAlertChance:F1}% / {timesChecked}");
+        Debug.Log($"number we have to ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ {randomnum} / prob of the theÔøΩ@ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ‘çÔøΩ {currentAlertChance:F1}% / {timesChecked}");
         if (randomnum <= currentAlertChance)
         {
-            Debug.Log("ìñÇΩÇËÅIAlertÇ…êÿÇËë÷Ç¶ÇÈ");
+            Debug.Log("ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩIAlertÔøΩ…êÿÇÔøΩ÷ÇÔøΩÔøΩÔøΩ");
             SetState(ObstacleState.Alert);
         }
     }
