@@ -209,6 +209,9 @@ public class GameManager : MonoBehaviour
     
     public void DoOnReturnToPlay()
     {
+        if (CurrentState == GameState.GameOver)
+            return;
+
         playerController.PlayerAnim.ResetTrigger("Walking");
         playerController.PlayerAnim.ResetTrigger("Posting");
         playerController.PlayerAnim.ResetTrigger("Escaping");

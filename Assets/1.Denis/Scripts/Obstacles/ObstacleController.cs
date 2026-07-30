@@ -81,8 +81,10 @@ public class ObstacleController : MonoBehaviour
             return;
 
         timer = timer - Time.deltaTime;
+
         if (timer > 0) return;
         timer = checkInterval;
+
         float increasingProb = Mathf.Clamp01((float)timesChecked / MaxChance);
         float currentAlertChance = Mathf.Lerp(minIdle, maxIdle, increasingProb);
 
@@ -108,6 +110,8 @@ public class ObstacleController : MonoBehaviour
 
         if (timer <= 0f)
         {
+            timer = checkInterval;
+
             if (UIManager.Instance.ActionButton.isPressed)
             {
                 SetState(ObstacleState.Catch);
