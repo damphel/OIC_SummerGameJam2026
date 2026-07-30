@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8526742567556951013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6114806784444757183}
+  - component: {fileID: 3379992217604522808}
+  - component: {fileID: 2651599333487577121}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6114806784444757183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526742567556951013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.98236, y: 0.47315, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3379992217604522808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526742567556951013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375c5fb267adc094e80c050a9b3be42f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  roundsToFinish: 5
+  availableScenes:
+  - {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
+  - {fileID: 4838701146586939588, guid: 53e19c6fd4f2dcb428bc615a43d2c498, type: 3}
+  - {fileID: 6164023505775597837, guid: 3e472d96da5b62b4fb6931b96f184cd5, type: 3}
+  - {fileID: 7710693568494147556, guid: aae553217a5860047b5692a4463ba7ee, type: 3}
+  - {fileID: 4838701146586939588, guid: c9eada3afbaf13343a3f4dd593524ae2, type: 3}
+  playerController: {fileID: 0}
+  director: {fileID: 0}
+  endingImage: {fileID: 0}
+  gameResultAudioSource: {fileID: 0}
+  winClip: {fileID: 8300000, guid: c002549ee7815b14295c19174ef97983, type: 3}
+  loseClip: {fileID: 0}
+--- !u!114 &2651599333487577121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526742567556951013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 7403441c503086847910e2d93b3b62a4, type: 2}
+    - {fileID: 11400000, guid: 671c7a932c90588489f788204136499a, type: 2}
+    - {fileID: 11400000, guid: 3d681501f06b4d2469cba520292accd1, type: 2}
+    - {fileID: 11400000, guid: d3a3958e6dae7d144943a5234931ad22, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3379992217604522808}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: DoOnDoorCinematicIsReceived
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3379992217604522808}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: DoOnFleeSignalIsReceived
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3379992217604522808}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: DoOnBackToPositionSignalIsReceived
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3379992217604522808}
+          m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+          m_MethodName: DoOnReturnToPlay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
