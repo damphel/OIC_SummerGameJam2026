@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 2166530269303784858}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalPosition: {x: 0, y: 2.18, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4417225004861728176}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 3677542586639954607, guid: 5edb62f3254526b4f8e9249cab3b5293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417225004861728176}
   - component: {fileID: 7229667108561196281}
+  - component: {fileID: 4026536692493163526}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -277,3 +278,25 @@ MonoBehaviour:
   obstacleAlertSFX: {fileID: 8300000, guid: 69042bcb2eab29f498728c7fb6492ddd, type: 3}
   obstacleCatchSFX: {fileID: 8300000, guid: 97bd37de1d5300f40be399d8cc5230b7, type: 3}
   currentState: 2
+--- !u!95 &4026536692493163526
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6896710424409110669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db87de8feebc6134c89f7a98620cf75c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

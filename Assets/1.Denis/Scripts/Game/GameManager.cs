@@ -107,6 +107,9 @@ public class GameManager : MonoBehaviour
 
     public void DoOnCompleteSceneHandler()
     {
+        if (CurrentState != GameState.Playing)
+            return;
+
         currentRound++;
         
         director.time = 0; 
