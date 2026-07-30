@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     [SerializeField] GameObject MainMenuPanel, GamePanel, EndingPanel;
-    [SerializeField] FadeAnimation MainMenuFader;
+    [SerializeField] FadeAnimation MainMenuFader,EndingMenuFader;
     [SerializeField] Button playButton, endButton, restartButton;
     [SerializeField] ActionButton actionButton;
 
@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 // Show the Game Over Screen with a fade
+                ActionButton.ThisButton.interactable = false;
                 break;
             default:
                 break;
@@ -108,11 +109,12 @@ public class UIManager : MonoBehaviour
     public void ChangeToEnding()
     {
         Debug.Log("ChangeToEnding");
-        GameManager.Instance.ChangeState(GameManager.GameState.Paused);
+        GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
 
-       
-        MainMenuFader.FadeOut(() => EndingPanel.SetActive(true));
         GamePanel.SetActive(false);
+        EndingMenuFader.FadeIn(() => EndingPanel.SetActive(true));
+
+        
     }
 
     public void UpdateProgressFillAmmmount(float value)

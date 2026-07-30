@@ -120,7 +120,7 @@ MonoBehaviour:
   MainMenuPanel: {fileID: 5174151352555445479}
   GamePanel: {fileID: 2695343283036747773}
   EndingPanel: {fileID: 3866610573550722936}
-  MainMenuFader: {fileID: 2137510792705607414}
+  MainMenuFader: {fileID: 865685899174267325}
   playButton: {fileID: 3618849375979120802}
   endButton: {fileID: 3300827728305777392}
   restartButton: {fileID: 8382962006125113514}
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 252777013140307236, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4091583302529168322, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
       propertyPath: m_Type
@@ -245,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 8535711291620264289, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2137510792705607414}
+      objectReference: {fileID: 865685899174267325}
     - target: {fileID: 8535711291620264289, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -296,6 +296,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 252777013140307236, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2137510792705607414}
+    - targetCorrespondingSourceObject: {fileID: 252777013140307236, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 865685899174267325}
   m_SourcePrefab: {fileID: 100100000, guid: 22aafa462b94d124a8f5cabca27462d0, type: 3}
 --- !u!224 &116422775511348223 stripped
 RectTransform:
@@ -344,6 +347,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIFader
   fadeCanvasGroup: {fileID: 8970968342275682598}
   fadeDuration: 2
+--- !u!114 &865685899174267325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5174151352555445479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4ca305eb9e46d48901e95964d055d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIFader
+  fadeCanvasGroup: {fileID: 8970968342275682598}
+  fadeDuration: 2
 --- !u!1001 &6655566541298261744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,18 +380,54 @@ PrefabInstance:
     - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3866610573550722936}
     - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeToMainmenu
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 243.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 153.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588643434262735028, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1560.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588643434262735028, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 188.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588643434262735028, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588643434262735028, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 347.59
       objectReference: {fileID: 0}
     - target: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_Name
@@ -467,7 +520,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3120072863145626447}
+    - targetCorrespondingSourceObject: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7599739391849765636}
   m_SourcePrefab: {fileID: 100100000, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
 --- !u!224 &3025299384465041677 stripped
 RectTransform:
@@ -479,6 +538,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
   m_PrefabInstance: {fileID: 6655566541298261744}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &3120072863145626447
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866610573550722936}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7599739391849765636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866610573550722936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4ca305eb9e46d48901e95964d055d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeAnimation
+  fadeCanvasGroup: {fileID: 3120072863145626447}
+  fadeDuration: 2
 --- !u!114 &8382962006125113514 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
@@ -548,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045113967699292453, guid: 94e6754df2b48e34d802f7b7f04cf526, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6579092871402023976, guid: 94e6754df2b48e34d802f7b7f04cf526, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

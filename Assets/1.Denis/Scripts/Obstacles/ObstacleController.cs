@@ -121,6 +121,8 @@ public class ObstacleController : MonoBehaviour
 
     private void OnPlayerCaught()
     {
+        Debug.Log("Player caught! Game Over.");
+        UIManager.Instance.ChangeToEnding();
         //animation change 
         //restart game
     }
