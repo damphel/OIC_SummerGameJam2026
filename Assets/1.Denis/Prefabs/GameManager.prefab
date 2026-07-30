@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 4838701146586939588, guid: c9eada3afbaf13343a3f4dd593524ae2, type: 3}
   playerController: {fileID: 0}
   director: {fileID: 0}
-  endingImage: {fileID: 0}
+  endingImage: {fileID: 9176332625645544900, guid: f33ed6d2726eac745958247d8c92bf97, type: 3}
   gameResultAudioSource: {fileID: 1053787685388423856}
   winClip: {fileID: 8300000, guid: c002549ee7815b14295c19174ef97983, type: 3}
   loseClip: {fileID: 8300000, guid: 9f316647a3695e642aeefcd3dd9882bf, type: 3}
