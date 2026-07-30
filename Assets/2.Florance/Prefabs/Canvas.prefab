@@ -1464,14 +1464,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3310323540725606069}
     m_Modifications:
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: -6282389404619501926, guid: 38b8f5fe51898f84c9702bdcfb7567a9, type: 3}
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: -3026058171327407114, guid: d97f87443a22ded4982069fea6fd007c, type: 3}
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: -3026058171327407114, guid: d97f87443a22ded4982069fea6fd007c, type: 3}
+    - target: {fileID: 2885418704493882970, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: -6282389404619501926, guid: 38b8f5fe51898f84c9702bdcfb7567a9, type: 3}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1345.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 116.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 612.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415080016178458147, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87.20001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012160314556859469, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 317010468468323505, guid: aba278126d3656446b8f7f8f6c373461, type: 3}
     - target: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_Name
       value: EndingPanel
       objectReference: {fileID: 0}
     - target: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694506220601340143, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7694506220601340143, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3026058171327407114, guid: d97f87443a22ded4982069fea6fd007c, type: 3}
     - target: {fileID: 8476151920559519741, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1553,7 +1601,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 307544626028701914, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
@@ -1833,6 +1882,10 @@ PrefabInstance:
     - target: {fileID: 6045113967699292453, guid: 94e6754df2b48e34d802f7b7f04cf526, type: 3}
       propertyPath: m_Name
       value: GamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6045113967699292453, guid: 94e6754df2b48e34d802f7b7f04cf526, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7822282926141586824, guid: 94e6754df2b48e34d802f7b7f04cf526, type: 3}
       propertyPath: m_Pivot.x

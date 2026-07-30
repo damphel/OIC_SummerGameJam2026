@@ -127,10 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2826099573900455538, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -33
-      objectReference: {fileID: 0}
     - target: {fileID: 3310323540725606069, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -209,14 +205,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3310323540725606069, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3349244973018963205, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5657518547303606883, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
-      propertyPath: m_FillAmount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7117415914221575401, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
@@ -696,6 +684,9 @@ MonoBehaviour:
   endingImage: {fileID: 0}
   gameMusicSource: {fileID: 0}
   gameAudioSource: {fileID: 0}
+  gameResultAudioSource: {fileID: 0}
+  winClip: {fileID: 0}
+  loseClip: {fileID: 0}
 --- !u!114 &1527108875
 MonoBehaviour:
   m_ObjectHideFlags: 0
