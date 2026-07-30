@@ -173,6 +173,8 @@ public class GameManager : MonoBehaviour
                     UIManager.Instance.ActionButton.pressedLastState = true;
                 break;
             case GameState.Playing:
+                if (!UIManager.Instance.ActionButton.isPressed)
+                    UIManager.Instance.ActionButton.pressedLastState = false;
                 break;
             case GameState.GameOver:
                 if (currentRound <= roundsToFinish)

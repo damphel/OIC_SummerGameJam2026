@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7229667108561196281, guid: 364d41795db54e94dab72658067c3edc, type: 3}
       propertyPath: alertTime
-      value: 1.25
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 7229667108561196281, guid: 364d41795db54e94dab72658067c3edc, type: 3}
       propertyPath: obstacleIdleSFX

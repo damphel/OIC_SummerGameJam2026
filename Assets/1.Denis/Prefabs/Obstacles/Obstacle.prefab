@@ -272,7 +272,6 @@ MonoBehaviour:
   maxIdle: 50
   MaxChance: 100
   alertTime: 2
-  alertTime: 1.25
   checkInterval: 1
   endingImage: {fileID: 317010468468323505, guid: aba278126d3656446b8f7f8f6c373461, type: 3}
   obstacleAnimator: {fileID: 4026536692493163526}

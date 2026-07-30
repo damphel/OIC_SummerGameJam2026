@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveDuration = 2.5f;
     [SerializeField] Animator playerAnim;
     [SerializeField] private AudioSource audioSource;//florance
+    [SerializeField] private AudioSource footstepSource;//florance
     [SerializeField] private AudioClip paperThrowClip,playerEscapeClip,playerCaughtClip;//florance
 
     private Vector3 startPos;
@@ -58,6 +59,11 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
             return;
+
+        if (!footstepSource.isPlaying)
+        {
+            footstepSource.Play();
+        }
         
         if (!isSetup || cachedTargetPos != targetPosition || progress <= 0.001f)
         {
