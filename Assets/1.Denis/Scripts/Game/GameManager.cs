@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     [Header("----- SFX/Music -----")]
     [SerializeField] private AudioSource gameMusicSource;
     [SerializeField] private AudioSource gameAudioSource;
+    [SerializeField] private AudioSource gameResultAudioSource;//florance
+    [SerializeField] private AudioClip winClip,loseClip;//florance
 
     private int currentRound = 0;
     
@@ -195,6 +197,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("デニス：Requiered rounds to finish reached.");
             if (endingImage != null) UIManager.Instance.UpdateEndingImageScreen(endingImage);
+            gameAudioSource.PlayOneShot(winClip);//florance
+            //win 
             ChangeState(GameState.GameOver);
         }
         else

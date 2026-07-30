@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform finalPosition;
     [SerializeField] float moveDuration = 2.5f;
     [SerializeField] Animator playerAnim;
+    [SerializeField] private AudioSource audioSource;//florance
+    [SerializeField] private AudioClip paperThrowClip,playerEscapeClip,playerCaughtClip;//florance
 
     private Vector3 startPos;
     private Vector3 controlPoint;
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.ResetTrigger("Posting");
         playerAnim.ResetTrigger("Walking");
         playerAnim.SetTrigger("Escaping");
-
+        audioSource.PlayOneShot(playerEscapeClip);//florance
         // running loop audio
     }
 
@@ -116,7 +118,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.ResetTrigger("Waiting");
         playerAnim.ResetTrigger("Walking");
         playerAnim.SetTrigger("Posting");
-
+        audioSource.PlayOneShot(paperThrowClip);//florance
         // posting sound play once
     }
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.ResetTrigger("Escaping");
         playerAnim.ResetTrigger("Walking");
         playerAnim.SetTrigger("BeingCaught");
-
+        audioSource.PlayOneShot(playerCaughtClip);//florance
         // surprise sound play once
     }
 
