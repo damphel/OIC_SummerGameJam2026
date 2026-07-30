@@ -20,7 +20,6 @@ public class ObstacleController : MonoBehaviour
 
     private void Start()
     {
-
         SetState(ObstacleState.Idle);
     }
 
@@ -76,6 +75,11 @@ public class ObstacleController : MonoBehaviour
 
     private void UpdateIdleState()
     {
+        if (currentState != ObstacleState.Idle)
+            return;
+
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
 
         timer = timer - Time.deltaTime;
         if (timer > 0) return;
@@ -96,15 +100,20 @@ public class ObstacleController : MonoBehaviour
 
     private void UpdateAlertState()
     {
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+
         timer -= Time.deltaTime;
 
-        if (UIManager.Instance.ActionButton.isPressed)
-        {
-            SetState(ObstacleState.Catch);
-            return;
-        }
         if (timer <= 0f)
         {
+            if (UIManager.Instance.ActionButton.isPressed)
+            {
+                GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
+                SetState(ObstacleState.Catch);
+                return;
+            }
+
             Debug.Log(" Didn't see anything. Returning to sleep.");
             SetState(ObstacleState.Idle);
         }

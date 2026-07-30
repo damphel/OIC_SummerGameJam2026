@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using UnityEditor.Animations;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform initialPosition;
     [SerializeField] Transform finalPosition;
     [SerializeField] float moveDuration = 2.5f;
+    [SerializeField] Animator playerAnim;
 
     private Vector3 startPos;
     private Vector3 controlPoint;
@@ -15,6 +17,9 @@ public class PlayerController : MonoBehaviour
     private bool isSetup = false;
 
     private Tween moveTween;
+
+    public Animator PlayerAnim => playerAnim;
+
     
     private void Start()
     {
@@ -84,8 +89,12 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;    
-        Gizmos.DrawWireSphere(initialPosition.position, 0.5f);
-        Gizmos.DrawWireSphere(finalPosition.position, 0.5f);
+        Gizmos.color = Color.yellow;
+
+        if (initialPosition)
+            Gizmos.DrawWireSphere(initialPosition.position, 0.5f);
+
+        if (finalPosition)
+            Gizmos.DrawWireSphere(finalPosition.position, 0.5f);
     }
 }

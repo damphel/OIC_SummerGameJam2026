@@ -77,6 +77,9 @@ public class UIManager : MonoBehaviour
             case GameState.Playing:
                 ActionButton.ThisButton.interactable = true;
                 break;
+            case GameState.GameOver:
+                // Show the Game Over Screen with a fade
+                break;
             default:
                 break;
         }

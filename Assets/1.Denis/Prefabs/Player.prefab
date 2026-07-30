@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.069, y: 1.849, z: 0}
-  m_LocalScale: {x: 0.665, y: 0.96, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3316485335771746642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,14 +80,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 24
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1080447093591452701, guid: 28df03a3cedb62a4a9dd4f99a6b1df99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.99, y: 3.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -162,3 +162,4 @@ MonoBehaviour:
   initialPosition: {fileID: 0}
   finalPosition: {fileID: 0}
   moveDuration: 2.5
+  playerAnim: {fileID: 1989730585589852796}

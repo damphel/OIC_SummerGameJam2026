@@ -41,7 +41,7 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
             onHoldButton?.Invoke(pointerDownTime);
 
-            Debug.Log($"Button is being held for: {pointerDownTime} seconds");
+            //Debug.Log($"Button is being held for: {pointerDownTime} seconds");
         }
     }
 

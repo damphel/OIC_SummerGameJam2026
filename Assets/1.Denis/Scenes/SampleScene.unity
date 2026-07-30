@@ -672,6 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375c5fb267adc094e80c050a9b3be42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  roundsToFinish: 6
   availableScenes:
   - {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
   - {fileID: 315330803726955708, guid: 89dec243daf2a284c817faa5796aa09f, type: 3}

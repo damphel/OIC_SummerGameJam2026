@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -10,14 +11,13 @@ public class FadeAnimation : MonoBehaviour
     private Tween fadeTween;
 
   
-    public void FadeOut(System.Action onComplete = null)
+    public void FadeOut(Action onComplete = null)
     {
-       
         fadeTween?.Kill();
-        fadeTween = fadeCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() => OnFadeOutComplete(onComplete));
+        fadeTween = fadeCanvasGroup.DOFade(0f, fadeDuration).OnComplete(() => DoOnFadeOutComplete(onComplete));
     }
 
-    private void OnFadeOutComplete(System.Action onComplete)
+    private void DoOnFadeOutComplete(Action onComplete)
     {
         fadeCanvasGroup.blocksRaycasts = false;
         fadeCanvasGroup.interactable = false;

@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     {
         Paused,
         Waiting, // Cinematics, before and after playing
-        Playing
+        Playing,
+        GameOver
     }
 
     #region Singleton
@@ -159,6 +160,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 break;
+            case GameState.GameOver:
+                break;
             default:
                 break;
         }
@@ -166,11 +169,17 @@ public class GameManager : MonoBehaviour
 
     public void DoOnDoorCinematicIsReceived()
     {
+        playerController.PlayerAnim.ResetTrigger("Waiting");
+        playerController.PlayerAnim.ResetTrigger("Walking");
+        playerController.PlayerAnim.SetTrigger("Posting");
         ChangeState(GameState.Waiting);
     }
     
     public void DoOnFleeSignalIsReceived()
     {
+        playerController.PlayerAnim.ResetTrigger("Posting");
+        playerController.PlayerAnim.ResetTrigger("Walking");
+        playerController.PlayerAnim.SetTrigger("Escaping");
         playerController.MovePlayerToFinalPosition();
     }
 
@@ -179,9 +188,15 @@ public class GameManager : MonoBehaviour
         if (currentRound >= roundsToFinish)
         {
             Debug.Log("デニス：Requiered rounds to finish reached.");
+            ChangeState(GameState.GameOver);
         }
         else
         {
+            playerController.PlayerAnim.ResetTrigger("Waiting");
+            playerController.PlayerAnim.ResetTrigger("Posting");
+            playerController.PlayerAnim.ResetTrigger("Escaping");
+            playerController.PlayerAnim.SetTrigger("Walking");
+
             CreateNextScene();
             playerController.MovePlayerToInitialPosition();
         }
@@ -189,6 +204,10 @@ public class GameManager : MonoBehaviour
     
     public void DoOnReturnToPlay()
     {
+        playerController.PlayerAnim.ResetTrigger("Walking");
+        playerController.PlayerAnim.ResetTrigger("Posting");
+        playerController.PlayerAnim.ResetTrigger("Escaping");
+        playerController.PlayerAnim.SetTrigger("Waiting");
         ChangeState(GameState.Playing);
     }
 
@@ -201,6 +220,11 @@ public class GameManager : MonoBehaviour
         // update the bar visuals
         UIManager.Instance.UpdateProgressFillAmmmount(time / CurrentScene.TimeRequieredToComplete);
         // do the player movement to Target
+
+        playerController.PlayerAnim.ResetTrigger("Waiting");
+        playerController.PlayerAnim.ResetTrigger("Escaping");
+        playerController.PlayerAnim.SetTrigger("Walking");
+
         playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,time / CurrentScene.TimeRequieredToComplete);   
     }
 
@@ -210,6 +234,8 @@ public class GameManager : MonoBehaviour
             return;
         
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
+        playerController.PlayerAnim.ResetTrigger("Walking");
+        playerController.PlayerAnim.SetTrigger("Waiting");
         playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,0f);   
         CurrentScene.DoOnActionButtonReleased();
     }
