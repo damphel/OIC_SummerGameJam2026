@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour
     private Tween moveTween;
 
     public Animator PlayerAnim => playerAnim;
-
-    
     private void Start()
     {
         transform.position = initialPosition.position;
@@ -74,7 +72,6 @@ public class PlayerController : MonoBehaviour
             isSetup = false;
         }
     }
-
     private Vector3 CalculateQuadraticBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
     {
         float u = 1f - t;
@@ -87,6 +84,54 @@ public class PlayerController : MonoBehaviour
 
         return p;
     }
+
+    public void ChangePlayerAnimationToFlee()
+    {
+        playerAnim.ResetTrigger("Posting");
+        playerAnim.ResetTrigger("Walking");
+        playerAnim.SetTrigger("Escaping");
+
+        // running loop audio
+    }
+
+    public void ChangePlayerAnimationToWalking()
+    {
+        playerAnim.ResetTrigger("Waiting");
+        playerAnim.ResetTrigger("Posting");
+        playerAnim.ResetTrigger("Escaping");
+        playerAnim.SetTrigger("Walking");
+
+        // walking loop audio
+    }
+
+    public void ChangePlayerAnimationToIdle()
+    {
+        playerAnim.ResetTrigger("Walking");
+        playerAnim.ResetTrigger("Posting");
+        playerAnim.ResetTrigger("Escaping");
+        playerAnim.SetTrigger("Waiting");
+    }
+
+    public void ChangePlayerAnimationToPosting()
+    {
+        playerAnim.ResetTrigger("Waiting");
+        playerAnim.ResetTrigger("Walking");
+        playerAnim.SetTrigger("Posting");
+
+        // posting sound play once
+    }
+
+    public void ChangePlayerAnimationToBeingCaught()
+    {
+        playerAnim.ResetTrigger("Waiting");
+        playerAnim.ResetTrigger("Posting");
+        playerAnim.ResetTrigger("Escaping");
+        playerAnim.ResetTrigger("Walking");
+        playerAnim.SetTrigger("BeingCaught");
+
+        // surprise sound play once
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

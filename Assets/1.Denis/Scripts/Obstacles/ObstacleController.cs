@@ -7,6 +7,15 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private float alertTime = 2f;
     [SerializeField] private float checkInterval = 1f;
 
+    [SerializeField] private Sprite endingImage;
+
+    [Header("----- SFX/Music -----")]
+    [SerializeField] AudioSource obstacleSource;
+    [SerializeField] AudioClip obstacleIdleSFX;
+    [SerializeField] AudioClip obstacleAlertSFX;
+    [SerializeField] AudioClip obstacleCatchSFX;
+
+
     public enum ObstacleState
     {
         Idle,
@@ -55,18 +64,21 @@ public class ObstacleController : MonoBehaviour
 
                 timesChecked = 0;
                 timer= checkInterval;
+                if(obstacleIdleSFX != null) obstacleSource.PlayOneShot(obstacleIdleSFX);
                 Debug.Log($"Idle Prob{minIdle}to{maxIdle}");
                 //animation change
                 break;
 
             case ObstacleState.Alert:
                 timer = alertTime;
+                if(obstacleAlertSFX != null) obstacleSource.PlayOneShot(obstacleAlertSFX);
                 Debug.Log("Checking for button");
                 //animation change
                 break;
 
             case ObstacleState.Catch:
                 Debug.Log("Button Pressed");
+                if(obstacleCatchSFX != null) obstacleSource.PlayOneShot(obstacleCatchSFX);
                 OnPlayerCaught();
                 break;
         }
@@ -114,6 +126,7 @@ public class ObstacleController : MonoBehaviour
 
             if (UIManager.Instance.ActionButton.isPressed)
             {
+                if(endingImage != null) UIManager.Instance.UpdateEndingImageScreen(endingImage);
                 SetState(ObstacleState.Catch);
                 return;
             }

@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] FadeAnimation MainMenuFader,EndingMenuFader;
     [SerializeField] Button playButton, restartButton;
     [SerializeField] ActionButton actionButton;
+    [SerializeField] Image endingImage;
 
     [SerializeField] Image progressFillBar;
 
@@ -115,5 +116,10 @@ public class UIManager : MonoBehaviour
     public void UpdateProgressFillAmmmount(float value)
     {
         progressFillBar.fillAmount = value;
+    }
+
+    public void UpdateEndingImageScreen(Sprite endingSprite)
+    {
+        endingImage.sprite = endingSprite;
     }
 }

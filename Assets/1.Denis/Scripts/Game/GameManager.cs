@@ -33,10 +33,16 @@ public class GameManager : MonoBehaviour
     public Action<GameState> onChangeState;
 
     //�@�ϐ�
+    [Header("----- Settings -----")]
     [SerializeField] private int roundsToFinish = 6;
     [SerializeField] List<SceneController> availableScenes;
     [SerializeField] PlayerController playerController;
     [SerializeField] PlayableDirector director;
+    [SerializeField] private Sprite endingImage;
+
+    [Header("----- SFX/Music -----")]
+    [SerializeField] private AudioSource gameMusicSource;
+    [SerializeField] private AudioSource gameAudioSource;
 
     private int currentRound = 0;
     
@@ -161,11 +167,7 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 break;
             case GameState.GameOver:
-                playerController.PlayerAnim.ResetTrigger("Waiting");
-                playerController.PlayerAnim.ResetTrigger("Posting");
-                playerController.PlayerAnim.ResetTrigger("Escaping");
-                playerController.PlayerAnim.ResetTrigger("Walking");
-                playerController.PlayerAnim.SetTrigger("BeingCaught"); 
+                playerController.ChangePlayerAnimationToBeingCaught();
                 break;
             default:
                 break;
@@ -174,17 +176,13 @@ public class GameManager : MonoBehaviour
 
     public void DoOnDoorCinematicIsReceived()
     {
-        playerController.PlayerAnim.ResetTrigger("Waiting");
-        playerController.PlayerAnim.ResetTrigger("Walking");
-        playerController.PlayerAnim.SetTrigger("Posting");
+    playerController.ChangePlayerAnimationToPosting();
         ChangeState(GameState.Waiting);
     }
     
     public void DoOnFleeSignalIsReceived()
     {
-        playerController.PlayerAnim.ResetTrigger("Posting");
-        playerController.PlayerAnim.ResetTrigger("Walking");
-        playerController.PlayerAnim.SetTrigger("Escaping");
+        playerController.ChangePlayerAnimationToFlee();
         playerController.MovePlayerToFinalPosition();
     }
 
@@ -193,14 +191,12 @@ public class GameManager : MonoBehaviour
         if (currentRound >= roundsToFinish)
         {
             Debug.Log("デニス：Requiered rounds to finish reached.");
+            if (endingImage != null) UIManager.Instance.UpdateEndingImageScreen(endingImage);
             ChangeState(GameState.GameOver);
         }
         else
         {
-            playerController.PlayerAnim.ResetTrigger("Waiting");
-            playerController.PlayerAnim.ResetTrigger("Posting");
-            playerController.PlayerAnim.ResetTrigger("Escaping");
-            playerController.PlayerAnim.SetTrigger("Walking");
+            playerController.ChangePlayerAnimationToWalking();
 
             CreateNextScene();
             playerController.MovePlayerToInitialPosition();
@@ -212,10 +208,7 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.GameOver)
             return;
 
-        playerController.PlayerAnim.ResetTrigger("Walking");
-        playerController.PlayerAnim.ResetTrigger("Posting");
-        playerController.PlayerAnim.ResetTrigger("Escaping");
-        playerController.PlayerAnim.SetTrigger("Waiting");
+        playerController.ChangePlayerAnimationToIdle();
         ChangeState(GameState.Playing);
     }
 
@@ -229,9 +222,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateProgressFillAmmmount(time / CurrentScene.TimeRequieredToComplete);
         // do the player movement to Target
 
-        playerController.PlayerAnim.ResetTrigger("Waiting");
-        playerController.PlayerAnim.ResetTrigger("Escaping");
-        playerController.PlayerAnim.SetTrigger("Walking");
+        playerController.ChangePlayerAnimationToWalking();
 
         playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,time / CurrentScene.TimeRequieredToComplete);   
     }
@@ -242,8 +233,7 @@ public class GameManager : MonoBehaviour
             return;
         
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
-        playerController.PlayerAnim.ResetTrigger("Walking");
-        playerController.PlayerAnim.SetTrigger("Waiting");
+        playerController.ChangePlayerAnimationToIdle();
         playerController.MovePlayerToTarget(CurrentScene.ThisTargetController.TargetPivot.transform.position,0f);   
         CurrentScene.DoOnActionButtonReleased();
     }
