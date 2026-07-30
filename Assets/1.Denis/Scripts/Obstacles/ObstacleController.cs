@@ -68,7 +68,6 @@ public class ObstacleController : MonoBehaviour
             case ObstacleState.Catch:
                 Debug.Log("Button Pressed");
                 OnPlayerCaught();
-                //animation change
                 break;
         }
     }
@@ -103,27 +102,29 @@ public class ObstacleController : MonoBehaviour
         if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
             return;
 
+        Debug.Log($"Obstacle {this.gameObject.name} is in Alert State", this.gameObject);
+
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
             if (UIManager.Instance.ActionButton.isPressed)
             {
-                GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
                 SetState(ObstacleState.Catch);
                 return;
             }
-
-            Debug.Log(" Didn't see anything. Returning to sleep.");
-            SetState(ObstacleState.Idle);
+            else
+            {
+                Debug.Log(" Didn't see anything. Returning to sleep.");
+                SetState(ObstacleState.Idle);
+            }
         }
     }
 
     private void OnPlayerCaught()
     {
         Debug.Log("Player caught! Game Over.");
-        UIManager.Instance.ChangeToEnding();
+        GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
         //animation change 
-        //restart game
     }
 }

@@ -161,6 +161,11 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 break;
             case GameState.GameOver:
+                playerController.PlayerAnim.ResetTrigger("Waiting");
+                playerController.PlayerAnim.ResetTrigger("Posting");
+                playerController.PlayerAnim.ResetTrigger("Escaping");
+                playerController.PlayerAnim.ResetTrigger("Walking");
+                playerController.PlayerAnim.SetTrigger("BeingCaught"); 
                 break;
             default:
                 break;

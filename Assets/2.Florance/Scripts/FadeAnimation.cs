@@ -25,11 +25,11 @@ public class FadeAnimation : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public void FadeIn(Action onComplete = null)
+    public void FadeIn(Action onComplete = null, float delay = 0)
     {
         gameObject.SetActive(true);
         fadeTween?.Kill();
-        fadeTween = fadeCanvasGroup.DOFade(1f, fadeDuration).From(0f).OnComplete(() => DoOnFadeInComplete(onComplete));
+        fadeTween = fadeCanvasGroup.DOFade(1f, fadeDuration).From(0f).SetDelay(delay).OnComplete(() => DoOnFadeInComplete(onComplete));
     }
 
     private void DoOnFadeInComplete(Action onComplete)

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] GameObject MainMenuPanel, GamePanel, EndingPanel;
     [SerializeField] FadeAnimation MainMenuFader,EndingMenuFader;
-    [SerializeField] Button playButton, endButton, restartButton;
+    [SerializeField] Button playButton, restartButton;
     [SerializeField] ActionButton actionButton;
 
     [SerializeField] Image progressFillBar;
@@ -51,7 +51,6 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         if (playButton) playButton.onClick.AddListener(ChangeToGame);
-        if (endButton) endButton.onClick.AddListener(ChangeToEnding);
         if (restartButton) restartButton.onClick.AddListener(ChangeToMainmenu);
     }
 
@@ -59,7 +58,6 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         if (playButton) playButton.onClick.RemoveListener(ChangeToGame);
-        if (endButton) endButton.onClick.RemoveListener(ChangeToEnding);
         if (restartButton) restartButton.onClick.RemoveListener(ChangeToMainmenu);
     }
 
@@ -79,6 +77,7 @@ public class UIManager : MonoBehaviour
                 break;
             case GameState.GameOver:
                 // Show the Game Over Screen with a fade
+                ChangeToEnding();
                 ActionButton.ThisButton.interactable = false;
                 break;
             default:
@@ -109,12 +108,8 @@ public class UIManager : MonoBehaviour
     public void ChangeToEnding()
     {
         Debug.Log("ChangeToEnding");
-        GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
-
         GamePanel.SetActive(false);
-        EndingMenuFader.FadeIn(() => EndingPanel.SetActive(true));
-
-        
+        EndingMenuFader.FadeIn(() => EndingPanel.SetActive(true), 1f);
     }
 
     public void UpdateProgressFillAmmmount(float value)
