@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -122,7 +125,7 @@ public class PlayerController : MonoBehaviour
         // posting sound play once
     }
 
-    public void ChangePlayerAnimationToBeingCaught()
+    public void ChangePlayerAnimationToBeingCaught(Action OnCompleteWait = null)
     {
         playerAnim.ResetTrigger("Waiting");
         playerAnim.ResetTrigger("Posting");
@@ -130,7 +133,23 @@ public class PlayerController : MonoBehaviour
         playerAnim.ResetTrigger("Walking");
         playerAnim.SetTrigger("BeingCaught");
         audioSource.PlayOneShot(playerCaughtClip);//florance
+
+        StartCoroutine(WaitToCompleteCaught(OnCompleteWait));
+
         // surprise sound play once
+    }
+
+    private IEnumerator WaitToCompleteCaught(Action OnCompleteWait = null)
+    {
+        float t = playerCaughtClip.length;
+        
+        while (t >= 0f)
+        {
+            t -= Time.deltaTime;
+            yield return null;
+        }
+        
+        if(OnCompleteWait != null) OnCompleteWait.Invoke();
     }
 
     private void OnDrawGizmos()

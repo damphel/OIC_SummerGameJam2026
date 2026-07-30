@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375c5fb267adc094e80c050a9b3be42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  roundsToFinish: 5
+  roundsToFinish: 1
   availableScenes:
   - {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
   - {fileID: 4838701146586939588, guid: 53e19c6fd4f2dcb428bc615a43d2c498, type: 3}
@@ -682,10 +682,8 @@ MonoBehaviour:
   playerController: {fileID: 1104725160}
   director: {fileID: 1998344992}
   endingImage: {fileID: 0}
-  gameMusicSource: {fileID: 0}
-  gameAudioSource: {fileID: 0}
-  gameResultAudioSource: {fileID: 0}
-  winClip: {fileID: 0}
+  gameResultAudioSource: {fileID: 1983257506}
+  winClip: {fileID: 8300000, guid: c002549ee7815b14295c19174ef97983, type: 3}
   loseClip: {fileID: 0}
 --- !u!114 &1527108875
 MonoBehaviour:
@@ -950,6 +948,11 @@ MonoBehaviour:
   sizeBox:
   - {fileID: 6931948658137127060}
   - {fileID: 1782659895}
+--- !u!82 &1983257506 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5220966286372340833, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
+  m_PrefabInstance: {fileID: 81749400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998344991
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite endingImage;
 
     [Header("----- SFX/Music -----")]
-    [SerializeField] private AudioSource gameMusicSource;
-    [SerializeField] private AudioSource gameAudioSource;
     [SerializeField] private AudioSource gameResultAudioSource;//florance
     [SerializeField] private AudioClip winClip,loseClip;//florance
 
@@ -51,6 +49,7 @@ public class GameManager : MonoBehaviour
     // Getters and Setters  
     public SceneController CurrentScene { get; private set; }
     public SceneController NextScene { get; private set; }
+    public PlayerController ThisPlayerController => playerController;
     public GameState CurrentState { get; set; }
 
     private void OnEnable()
@@ -172,7 +171,8 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 break;
             case GameState.GameOver:
-                playerController.ChangePlayerAnimationToBeingCaught();
+                //DENIS
+                //playerController.ChangePlayerAnimationToBeingCaught();
                 break;
             default:
                 break;
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("デニス：Requiered rounds to finish reached.");
             if (endingImage != null) UIManager.Instance.UpdateEndingImageScreen(endingImage);
-            gameAudioSource.PlayOneShot(winClip);//florance
+            gameResultAudioSource.PlayOneShot(winClip);//florance
             //win 
             ChangeState(GameState.GameOver);
         }

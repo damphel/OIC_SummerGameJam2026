@@ -894,7 +894,7 @@ MonoBehaviour:
   playButton: {fileID: 3618849375979120802}
   restartButton: {fileID: 8382962006125113514}
   actionButton: {fileID: 1451361651783455947}
-  endingImage: {fileID: 0}
+  endingImage: {fileID: 1860997928692619965}
   progressFillBar: {fileID: 5657518547303606883}
 --- !u!1 &8534238445944625296
 GameObject:
@@ -1503,7 +1503,7 @@ PrefabInstance:
     - target: {fileID: 5012160314556859469, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 317010468468323505, guid: aba278126d3656446b8f7f8f6c373461, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7635192727466688904, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
       propertyPath: m_Name
       value: EndingPanel
@@ -1615,6 +1615,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3483447793397832616}
   m_SourcePrefab: {fileID: 100100000, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+--- !u!114 &1860997928692619965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5012160314556859469, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}
+  m_PrefabInstance: {fileID: 6655566541298261744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &3025299384465041677 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8476151920559519741, guid: 1386378167c9f2844aefeca8169c18cb, type: 3}

@@ -186,7 +186,11 @@ public class ObstacleController : MonoBehaviour
     private void OnPlayerCaught()
     {
         Debug.Log("Player caught! Game Over.");
-        GameManager.Instance.ChangeState(GameManager.GameState.GameOver);
+        GameManager.Instance.ChangeState(GameManager.GameState.Waiting);
+        GameManager.Instance.ThisPlayerController.ChangePlayerAnimationToBeingCaught(
+            () => { GameManager.Instance.ChangeState(GameManager.GameState.GameOver); }
+        );
+
         //animation change 
     }
 }
