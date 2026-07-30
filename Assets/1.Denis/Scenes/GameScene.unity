@@ -207,6 +207,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4020155992727417611, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
+      propertyPath: fadeDuration
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793303564574228528, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
+      propertyPath: fadeDuration
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7117415914221575401, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -830,11 +838,6 @@ MonoBehaviour:
   sizeBox:
   - {fileID: 6931948658137127060}
   - {fileID: 1782659895}
---- !u!82 &1983257506 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5220966286372340833, guid: c4c9ca468988a3a439b66320a9ec814c, type: 3}
-  m_PrefabInstance: {fileID: 81749400}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998344991
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,10 +936,6 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1104725160}
-    - target: {fileID: 3379992217604522808, guid: 0f34cd2f92a36b646b923732cd82640e, type: 3}
-      propertyPath: gameResultAudioSource
-      value: 
-      objectReference: {fileID: 1983257506}
     - target: {fileID: 6114806784444757183, guid: 0f34cd2f92a36b646b923732cd82640e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.98236

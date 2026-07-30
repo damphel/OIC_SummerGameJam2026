@@ -73,6 +73,10 @@ PrefabInstance:
       value: PoliceCar
       objectReference: {fileID: 0}
     - target: {fileID: 7229667108561196281, guid: 364d41795db54e94dab72658067c3edc, type: 3}
+      propertyPath: alertTime
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229667108561196281, guid: 364d41795db54e94dab72658067c3edc, type: 3}
       propertyPath: obstacleIdleSFX
       value: 
       objectReference: {fileID: 8300000, guid: 349d00169c8208541be32a279cbca458, type: 3}

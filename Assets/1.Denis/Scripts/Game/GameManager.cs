@@ -165,14 +165,20 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.Paused:
+                if (UIManager.Instance.ActionButton.isPressed)
+                    UIManager.Instance.ActionButton.pressedLastState = true;
                 break;
             case GameState.Waiting:
+                if (UIManager.Instance.ActionButton.isPressed)
+                    UIManager.Instance.ActionButton.pressedLastState = true;
                 break;
             case GameState.Playing:
                 break;
             case GameState.GameOver:
-                //DENIS
-                //playerController.ChangePlayerAnimationToBeingCaught();
+                if (currentRound <= roundsToFinish)
+                {
+                    gameResultAudioSource.PlayOneShot(loseClip);//florance
+                }
                 break;
             default:
                 break;
@@ -223,6 +229,9 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing)
             return;
+
+        if (UIManager.Instance.ActionButton.pressedLastState)
+            return;
         
         CurrentScene.DoOnActionButtonPressed(time);
         // update the bar visuals
@@ -238,6 +247,9 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing)
             return;
+        
+        if (UIManager.Instance.ActionButton.pressedLastState)
+            UIManager.Instance.ActionButton.pressedLastState = false;
         
         UIManager.Instance.UpdateProgressFillAmmmount(0f);
         playerController.ChangePlayerAnimationToIdle();

@@ -169,7 +169,7 @@ public class ObstacleController : MonoBehaviour
         {
             timer = checkInterval;
 
-            if (UIManager.Instance.ActionButton.isPressed)
+            if (UIManager.Instance.ActionButton.isPressed && !UIManager.Instance.ActionButton.pressedLastState)
             {
                 if(endingImage != null) UIManager.Instance.UpdateEndingImageScreen(endingImage);
                 SetState(ObstacleState.Catch);

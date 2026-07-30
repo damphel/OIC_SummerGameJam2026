@@ -8,6 +8,8 @@ public class ActionButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     [SerializeField] private Button thisButton;
     private float pointerDownTime;
     public bool isPressed = false;
+    
+    public bool pressedLastState = false;
 
     public Button ThisButton => thisButton;
 
