@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
                     UIManager.Instance.ActionButton.pressedLastState = false;
                 break;
             case GameState.GameOver:
-                if (currentRound <= roundsToFinish)
+                if (currentRound < roundsToFinish)
                 {
                     gameResultAudioSource.PlayOneShot(loseClip);//florance
                 }
