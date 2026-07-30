@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class ObstacleController : MonoBehaviour
 {
     [SerializeField] private int minIdle = 10;   
@@ -28,13 +31,27 @@ public class ObstacleController : MonoBehaviour
     private float timer;
     private int timesChecked;
 
-    private void Start()
+    private void OnEnable()
     {
-        SetState(ObstacleState.Idle);
+        if (GameManager.Instance.CurrentState == GameManager.GameState.Playing)
+            return;
+        
+        UIManager.Instance.PlayButton.onClick.AddListener(() => { SetState(ObstacleState.Idle); });
+    }
+
+    private void OnDisable()
+    {
+        if (GameManager.Instance.CurrentState == GameManager.GameState.Playing)
+            return;
+        
+        UIManager.Instance.PlayButton.onClick.RemoveListener(() => { SetState(ObstacleState.Idle); });
     }
 
     private void Update()
     {
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            return;
+        
         switch (currentState)
         {
             case ObstacleState.Idle:
@@ -58,7 +75,10 @@ public class ObstacleController : MonoBehaviour
     private void SetState(ObstacleState newState)
     {
         currentState = newState;
-
+        
+        //if (GameManager.Instance.CurrentState != GameManager.GameState.Playing)
+            //return;
+        
         switch (currentState)
         {
             case ObstacleState.Idle:

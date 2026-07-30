@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image progressFillBar;
 
     public ActionButton ActionButton { get => actionButton; }
+    public Button PlayButton { get => playButton; }
 
     private void Awake()
     {
