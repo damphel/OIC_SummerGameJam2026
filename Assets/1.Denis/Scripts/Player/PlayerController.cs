@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         moveTween?.Kill();
 
         Vector3 start = transform.position;
-        Vector3 control = (start + targetPosition) / 2f + Vector3.down * 5f;
+        Vector3 control = (start + targetPosition) / 2f + Vector3.down * 3f;
 
         Vector3[] pathWaypoints = new Vector3[] { control, targetPosition };
 
