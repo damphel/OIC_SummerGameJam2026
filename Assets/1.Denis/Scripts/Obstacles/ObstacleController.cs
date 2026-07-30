@@ -12,6 +12,7 @@ public class ObstacleController : MonoBehaviour
 
     [Header("----- SFX/Music -----")]
     [SerializeField] AudioSource obstacleSource;
+    [SerializeField] AudioSource obstacleIdleSource;
     [SerializeField] AudioClip obstacleIdleSFX;
     [SerializeField] AudioClip obstacleAlertSFX;
     [SerializeField] AudioClip obstacleCatchSFX;
@@ -65,7 +66,7 @@ public class ObstacleController : MonoBehaviour
 
                 timesChecked = 0;
                 timer= checkInterval;
-                if(obstacleIdleSFX != null) obstacleSource.PlayOneShot(obstacleIdleSFX);
+                if(obstacleIdleSFX != null) obstacleIdleSource.PlayOneShot(obstacleIdleSFX);
 
                 Debug.Log($"Idle Prob{minIdle}to{maxIdle}");
 
