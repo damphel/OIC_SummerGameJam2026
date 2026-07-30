@@ -687,8 +687,10 @@ MonoBehaviour:
   roundsToFinish: 5
   availableScenes:
   - {fileID: 5853360973997825654, guid: 0b06e27d9582ea248ade884ce15f29db, type: 3}
+  - {fileID: 4838701146586939588, guid: 53e19c6fd4f2dcb428bc615a43d2c498, type: 3}
   - {fileID: 6164023505775597837, guid: 3e472d96da5b62b4fb6931b96f184cd5, type: 3}
   - {fileID: 7710693568494147556, guid: aae553217a5860047b5692a4463ba7ee, type: 3}
+  - {fileID: 4838701146586939588, guid: c9eada3afbaf13343a3f4dd593524ae2, type: 3}
   playerController: {fileID: 1104725160}
   director: {fileID: 1998344992}
   endingImage: {fileID: 0}
