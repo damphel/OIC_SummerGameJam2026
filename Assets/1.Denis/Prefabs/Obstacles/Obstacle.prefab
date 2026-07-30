@@ -277,7 +277,6 @@ MonoBehaviour:
   obstacleAnimator: {fileID: 4026536692493163526}
   obstacleSource: {fileID: 5292059633019973885}
   obstacleIdleSource: {fileID: 7520799366724205356}
-  obstacleIdleSFX: {fileID: 8300000, guid: 1e929daa2da4a00409aa3ef1fc3d8588, type: 3}
   obstacleAlertSFX: {fileID: 8300000, guid: 218d4a064a10af447b552ae18aa54031, type: 3}
   obstacleCatchSFX: {fileID: 8300000, guid: 97bd37de1d5300f40be399d8cc5230b7, type: 3}
   currentState: 0
