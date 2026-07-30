@@ -8,6 +8,7 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private float checkInterval = 1f;
 
     [SerializeField] private Sprite endingImage;
+    [SerializeField] private Animator obstacleAnimator;
 
     [Header("----- SFX/Music -----")]
     [SerializeField] AudioSource obstacleSource;
@@ -65,8 +66,17 @@ public class ObstacleController : MonoBehaviour
                 timesChecked = 0;
                 timer= checkInterval;
                 if(obstacleIdleSFX != null) obstacleSource.PlayOneShot(obstacleIdleSFX);
+
                 Debug.Log($"Idle Prob{minIdle}to{maxIdle}");
+
                 //animation change
+                if(obstacleAnimator != null)
+                {
+                    obstacleAnimator.ResetTrigger("Notice");
+                    obstacleAnimator.ResetTrigger("Bark");
+                    obstacleAnimator.SetTrigger("Idle");
+                }
+
                 break;
 
             case ObstacleState.Alert:
@@ -74,12 +84,25 @@ public class ObstacleController : MonoBehaviour
                 if(obstacleAlertSFX != null) obstacleSource.PlayOneShot(obstacleAlertSFX);
                 Debug.Log("Checking for button");
                 //animation change
+                if (obstacleAnimator != null)
+                {
+                    obstacleAnimator.ResetTrigger("Idle");
+                    obstacleAnimator.ResetTrigger("Bark");
+                    obstacleAnimator.SetTrigger("Notice");
+                }
                 break;
 
             case ObstacleState.Catch:
                 Debug.Log("Button Pressed");
                 if(obstacleCatchSFX != null) obstacleSource.PlayOneShot(obstacleCatchSFX);
                 OnPlayerCaught();
+
+                if (obstacleAnimator != null)
+                {
+                    obstacleAnimator.ResetTrigger("Notice");
+                    obstacleAnimator.ResetTrigger("Idle");
+                    obstacleAnimator.SetTrigger("Bark");
+                }
                 break;
         }
     }

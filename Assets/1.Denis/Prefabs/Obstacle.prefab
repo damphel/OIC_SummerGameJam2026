@@ -273,6 +273,7 @@ MonoBehaviour:
   alertTime: 2
   checkInterval: 1
   endingImage: {fileID: 0}
+  obstacleAnimator: {fileID: 4026536692493163526}
   obstacleSource: {fileID: 5292059633019973885}
   obstacleIdleSFX: {fileID: 8300000, guid: 351882b36dd43084789459950f35eb97, type: 3}
   obstacleAlertSFX: {fileID: 8300000, guid: 69042bcb2eab29f498728c7fb6492ddd, type: 3}
