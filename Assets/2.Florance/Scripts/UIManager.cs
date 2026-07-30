@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button playButton, restartButton;
     [SerializeField] ActionButton actionButton;
     [SerializeField] Image endingImage;
+    [SerializeField] AudioSource mainMusicSource;
+    [SerializeField] AudioSource gameMusicSource;
 
     [SerializeField] Image progressFillBar;
 
@@ -91,8 +93,9 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("ChangeToMainmenu");
         GameManager.Instance.ChangeState(GameManager.GameState.Paused);
-
+        mainMusicSource.Play();
         MainMenuPanel.SetActive(true);
+        gameMusicSource.Stop();
         GamePanel.SetActive(false);
         EndingPanel.SetActive(false);
     }
@@ -102,14 +105,21 @@ public class UIManager : MonoBehaviour
         Debug.Log("ChangeToGame");
         GameManager.Instance.ChangeState(GameManager.GameState.Playing);
 
-     
-        MainMenuFader.FadeOut(() => GamePanel.SetActive(true));
+        mainMusicSource.Stop();
+
+        MainMenuFader.FadeOut(
+            () =>
+            {
+                gameMusicSource.Play();
+                GamePanel.SetActive(true);
+            });
         EndingPanel.SetActive(false);
     }
 
     public void ChangeToEnding()
     {
         Debug.Log("ChangeToEnding");
+        gameMusicSource.Stop();
         GamePanel.SetActive(false);
         EndingMenuFader.FadeIn(() => EndingPanel.SetActive(true), 1f);
     }
